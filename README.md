@@ -1,55 +1,55 @@
 # Yujie Delivery Platform
 
-一个基于 Spring Boot 的外卖平台后端系统。
+A food delivery platform backend system based on Spring Boot.
 
-## 技术栈
+## Tech Stack
 
-- **后端框架**: Spring Boot 3.2.3
-- **数据库**: MySQL 8.0
-- **安全框架**: Spring Security + JWT
-- **API 文档**: SpringDoc OpenAPI (Swagger)
-- **构建工具**: Maven
-- **Java 版本**: 17
+- **Backend Framework**: Spring Boot 3.2.3
+- **Database**: MySQL 8.0
+- **Security**: Spring Security + JWT
+- **API Documentation**: SpringDoc OpenAPI (Swagger)
+- **Build Tool**: Maven
+- **Java Version**: 17
 
-## 功能特性
+## Features
 
-### 用户管理
-- 用户注册/登录
-- 角色管理（用户、餐厅老板、配送员、管理员）
-- 用户信息管理
+### User Management
+- User registration/login
+- Role management (User, Restaurant Owner, Delivery Person, Admin)
+- User profile management
 
-### 餐厅管理
-- 餐厅信息管理
-- 餐厅搜索和筛选
-- 餐厅状态管理
+### Restaurant Management
+- Restaurant information management
+- Restaurant search and filtering
+- Restaurant status management
 
-### 菜单管理
-- 菜单项管理
-- 菜品分类
-- 菜品可用性管理
+### Menu Management
+- Menu item management
+- Dish categorization
+- Dish availability management
 
-### 订单管理
-- 订单创建和管理
-- 订单状态跟踪
-- 配送员分配
+### Order Management
+- Order creation and management
+- Order status tracking
+- Delivery person assignment
 
-### 安全特性
-- JWT 认证
-- 基于角色的权限控制
-- 跨域支持
+### Security
+- JWT authentication
+- Role-based access control
+- CORS support
 
-## 快速开始
+## Quick Start
 
-### 环境要求
+### Prerequisites
 
 - Java 17+
 - MySQL 8.0+
 - Maven 3.6+
 
-### 数据库配置
+### Database Configuration
 
-1. 创建 MySQL 数据库
-2. 修改 `src/main/resources/application.properties` 中的数据库连接信息
+1. Create a MySQL database
+2. Edit the database connection info in `src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/yujiedelivery?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
@@ -57,93 +57,91 @@ spring.datasource.username=your_username
 spring.datasource.password=your_password
 ```
 
-### 运行项目
+### Run the Project
 
-1. 克隆项目
+1. Clone the repository
 ```bash
 git clone <repository-url>
 cd yujiedelivery
 ```
 
-2. 编译项目
+2. Compile the project
 ```bash
 mvn clean compile
 ```
 
-3. 运行项目
+3. Run the project
 ```bash
 mvn spring-boot:run
 ```
 
-4. 访问应用
-- 应用地址: http://localhost:8080
-- API 文档: http://localhost:8080/swagger-ui.html
+4. Access the application
+- App: http://localhost:8080
+- API Docs: http://localhost:8080/swagger-ui.html
 
-## API 文档
+## API Documentation
 
-启动应用后，可以通过以下地址访问 API 文档：
+After starting the application, you can access the API docs at:
 
 - Swagger UI: http://localhost:8080/swagger-ui.html
-- OpenAPI 规范: http://localhost:8080/v3/api-docs
+- OpenAPI Spec: http://localhost:8080/v3/api-docs
 
-## 主要 API 端点
+## Main API Endpoints
 
-### 认证
-- `POST /api/auth/login` - 用户登录
-- `POST /api/auth/signup` - 用户注册
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/signup` - User registration
 
-### 用户管理
-- `GET /api/users/me` - 获取当前用户信息
-- `PUT /api/users/{id}` - 更新用户信息
-- `GET /api/users` - 获取所有用户（管理员）
+### User Management
+- `GET /api/users/me` - Get current user info
+- `PUT /api/users/{id}` - Update user info
+- `GET /api/users` - Get all users (admin)
 
-### 餐厅管理
-- `GET /api/restaurants` - 获取所有餐厅
-- `GET /api/restaurants/{id}` - 获取餐厅详情
-- `POST /api/restaurants` - 创建餐厅（餐厅老板）
-- `PUT /api/restaurants/{id}` - 更新餐厅信息
+### Restaurant Management
+- `GET /api/restaurants` - Get all restaurants
+- `GET /api/restaurants/{id}` - Get restaurant details
+- `POST /api/restaurants` - Create restaurant (owner)
+- `PUT /api/restaurants/{id}` - Update restaurant info
 
-### 菜单管理
-- `GET /api/restaurants/{restaurantId}/menu-items` - 获取餐厅菜单
-- `POST /api/restaurants/{restaurantId}/menu-items` - 添加菜单项
-- `PUT /api/restaurants/{restaurantId}/menu-items/{id}` - 更新菜单项
+### Menu Management
+- `GET /api/restaurants/{restaurantId}/menu-items` - Get restaurant menu
+- `POST /api/restaurants/{restaurantId}/menu-items` - Add menu item
+- `PUT /api/restaurants/{restaurantId}/menu-items/{id}` - Update menu item
 
-### 订单管理
-- `POST /api/orders` - 创建订单
-- `GET /api/orders/{id}` - 获取订单详情
-- `PUT /api/orders/{id}/status` - 更新订单状态
+### Order Management
+- `POST /api/orders` - Create order
+- `GET /api/orders/{id}` - Get order details
+- `PUT /api/orders/{id}/status` - Update order status
 
-## 用户角色
+## User Roles
 
-- **USER**: 普通用户，可以下单
-- **RESTAURANT_OWNER**: 餐厅老板，可以管理餐厅和菜单
-- **DELIVERY_PERSON**: 配送员，可以接单配送
-- **ADMIN**: 管理员，拥有所有权限
+- **USER**: Regular user, can place orders
+- **RESTAURANT_OWNER**: Restaurant owner, can manage restaurants and menus
+- **DELIVERY_PERSON**: Delivery person, can deliver orders
+- **ADMIN**: Administrator, has all permissions
 
-## 开发说明
-
-### 项目结构
+## Project Structure
 
 ```
 src/main/java/com/yujiedelivery/
-├── config/          # 配置类
-├── controller/      # 控制器层
-├── dto/            # 数据传输对象
-├── exception/      # 异常处理
-├── model/          # 实体类
-├── repository/     # 数据访问层
-├── security/       # 安全相关
-└── service/        # 业务逻辑层
+├── config/          # Configuration classes
+├── controller/      # Controllers
+├── dto/             # Data Transfer Objects
+├── exception/       # Exception handling
+├── model/           # Entity classes
+├── repository/      # Data access layer
+├── security/        # Security-related
+└── service/         # Business logic layer
 ```
 
-### 数据库表
+### Database Tables
 
-- `users` - 用户表
-- `restaurants` - 餐厅表
-- `menu_items` - 菜单项表
-- `orders` - 订单表
-- `order_items` - 订单项表
+- `users` - Users
+- `restaurants` - Restaurants
+- `menu_items` - Menu items
+- `orders` - Orders
+- `order_items` - Order items
 
-## 许可证
+## License
 
 Apache License 2.0 
